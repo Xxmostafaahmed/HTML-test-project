@@ -1,0 +1,47 @@
+<h1>Backtracking</h1>
+<p>Copyright ©2002 by David Matuszek</p>
+<p>Backtracking is a form of recursion</p>
+
+
+
+<p>The usual scenario is that you are faced with a number of options,<br> and you must choose one of these. After you make your choice you will get a new set of options; just what set of options you get depends on what choice you made. This procedure is repeated over and over until you reach a final state. If you made a good sequence of choices, your final state is a goal state; if you didn't, it isn't.</p>
+
+
+<p>Conceptually, you start at the root of a tree; the tree probably has some good leaves and some bad leaves, though it may be that the leaves are all good or all bad. You want to get to a good leaf. At each node, beginning with the root, you choose one of its children to move to, and you keep this up until you get to a leaf.</p>
+
+
+<p>Suppose you get to a bad leaf. You Congratulations backtrack to continue the search for a good leaf by revoking your most recent choice, and trying out the next option in that set of options. If you run out of options, revoke the choice that got you here, and try another choice at that node. If you end up at the root with no options left, there are no good leaves to be found.</p>
+
+
+
+<p>This needs an example</p>
+
+
+<img src="https://www.cis.upenn.edu/~matuszek/cit594-2012/Pages/backtracking_files/treesearch.gif" alt="">
+
+
+<li>Starting at Root, your options are A and B. You choose A.</li>
+
+
+
+<liAt A, your options are C and D. You choose C.></li>
+    <li>C is bad. Go back to A.</li>
+
+
+    <li>At A, you have already tried C, and it failed. Try D</li>
+
+
+<li>E is good. Congratulations!</li>
+
+
+<pre>boolean solve(Node n) {
+    if n is a leaf node {
+        if the leaf is a goal node, return true
+        else return false
+    } else {
+        for each child c of n {
+            if solve(c) succeeds, return true
+        }
+        return false
+    }
+}</pre>
